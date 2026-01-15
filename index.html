@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Insider</title>
+
+</head>
+
+<body class="bg-gray-100 min-h-screen">
+
+    <nav class="bg-slate-800 p-4 text-white flex justify-between">
+        <span class="font-bold">Insider</span>
+        <ul class="flex gap-4">
+            <li><a href="#" class="hover:text-blue-400 nav-link" id="nav-home">Home</a></li>
+            <li><a href="#" class="hover:text-blue-400 nav-link" id="nav-produtos">Produtos</a></li>
+        </ul>
+    </nav>
+
+    <main class="flex flex-col md:flex-row w-full min-h-[90vh]">
+
+        <div class="bg-white w-full md:w-[50%] p-10 flex flex-col items-center justify-center border-r">
+            <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white p-6 border border-gray-200">
+                <img class="w-full h-48 object-cover rounded-md" src="nike.png" alt="Tênis Nike">
+                <div class="px-6 py-4 flex flex-col justify-center items-center">
+                    <div class="font-bold text-xl mb-2" id="product-name">Air Force - NIKE</div>
+                    <p class="text-gray-700 text-base">R$ 299,90</p>
+                </div>
+                <button id="btn-add-cart"
+                    class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded transition">
+                    Adicionar ao Carrinho
+                </button>
+            </div>
+            <p class="mt-4 text-sm text-gray-400">Clique acima para disparar um evento de 'cart_add' no GTM</p>
+        </div>
+
+        <div class="bg-blue-50 w-full md:w-[50%] p-10 flex flex-col items-center justify-center">
+            <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold mb-6 text-blue-800 text-center">Formulário</h2>
+
+                <form id="form-contato">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Nome:</label>
+                        <input type="text" id="user_name" name="name" required
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">E-mail:</label>
+                        <input type="email" id="user_email" name="email" required
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+                    <button type="submit"
+                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        Enviar Cadastro
+                    </button>
+                </form>
+                <div id="msg-sucesso" class="hidden mt-4 text-green-600 font-bold text-center italic">
+                    Enviado com sucesso! (Cheque o GTM)
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Simulação de DataLayer para o GTM
+        document.getElementById('btn-add-cart').addEventListener('click', function () {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'add_to_cart',
+                'product_name': 'Tênis Especial Insider',
+                'price': 299.90,
+                'currency': 'BRL'
+            });
+            alert('Evento enviado ao GTM!');
+        });
+
+        document.getElementById('form-contato').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const email = document.getElementById('user_email').value;
+
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'form_submission',
+                'user_email': email,
+                'form_id': 'newsletter_home'
+            });
+
+            document.getElementById('msg-sucesso').classList.remove('hidden');
+        });
+    </script>
+</body>
+
+</html>
