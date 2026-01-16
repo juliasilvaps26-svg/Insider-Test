@@ -2,15 +2,20 @@
 <html lang="pt-br">
 
 <head>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WB842559');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Insider</title>
-
 </head>
 
 <body class="bg-gray-100 min-h-screen">
-
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB842559"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <nav class="bg-slate-800 p-4 text-white flex justify-between">
         <span class="font-bold">Insider</span>
         <ul class="flex gap-4">
@@ -20,7 +25,6 @@
     </nav>
 
     <main class="flex flex-col md:flex-row w-full min-h-[90vh]">
-
         <div class="bg-white w-full md:w-[50%] p-10 flex flex-col items-center justify-center border-r">
             <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white p-6 border border-gray-200">
                 <img class="w-full h-48 object-cover rounded-md" src="nike.png" alt="Tênis Nike">
@@ -33,13 +37,11 @@
                     Adicionar ao Carrinho
                 </button>
             </div>
-            <p class="mt-4 text-sm text-gray-400">Clique acima para disparar um evento de 'cart_add' no GTM</p>
         </div>
 
         <div class="bg-blue-50 w-full md:w-[50%] p-10 flex flex-col items-center justify-center">
             <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
                 <h2 class="text-2xl font-bold mb-6 text-blue-800 text-center">Formulário</h2>
-
                 <form id="form-contato">
                     <div class="mb-4">
                         <label class="block text-gray-700 text-sm font-bold mb-2">Nome:</label>
@@ -64,32 +66,29 @@
     </main>
 
     <script>
-        // Simulação de DataLayer para o GTM
+        // Seu script da dataLayer (Mantenha como está)
         document.getElementById('btn-add-cart').addEventListener('click', function () {
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 'event': 'add_to_cart',
-                'product_name': 'Tênis Especial Insider',
+                'product_name': 'Air Force - NIKE',
                 'price': 299.90,
                 'currency': 'BRL'
             });
-            alert('Evento enviado ao GTM!');
+            console.log('Evento enviado ao GTM');
         });
 
         document.getElementById('form-contato').addEventListener('submit', function (e) {
             e.preventDefault();
             const email = document.getElementById('user_email').value;
-
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 'event': 'form_submission',
                 'user_email': email,
                 'form_id': 'newsletter_home'
             });
-
             document.getElementById('msg-sucesso').classList.remove('hidden');
         });
     </script>
 </body>
-
 </html>
